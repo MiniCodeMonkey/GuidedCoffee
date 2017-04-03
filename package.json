@@ -7,9 +7,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "immutability-helper": "^2.1.2",
     "native-base": "^2.1.0",
     "react": "~15.4.1",
-    "react-native": "0.42.3"
+    "react-native": "0.42.3",
+    "react-native-navigation": "^2.0.0-experimental.265",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-actions": "^2.0.1",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",
