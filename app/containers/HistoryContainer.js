@@ -1,73 +1,75 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
 import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Footer } from 'native-base';
 
 export class HistoryContainer extends Component {
-    render() {
-        return (
-            <Container>
-                <Content>
-                     <Card>
-                        <CardItem>
-                            <Left>
-                                <Thumbnail source={require('../../resources/background.png')} />
-                                <Body>
-                                    <Text>NativeBase</Text>
-                                    <Text note>GeekyAnts</Text>
-                                </Body>
-                            </Left>
-                          </CardItem>
-                          <CardItem cardBody>
-                              <Image/>
-                          </CardItem>
-                          <CardItem content>
-                              <Text>Wait a minute. Wait a minute, Doc. Uhhh...
-                              Are you telling me that you built a time machine... out of a DeLorean?!
-                              Whoa. This is heavy.</Text>
-                           </CardItem>
-                           <CardItem>
-                              <Button transparent>
-                                  <Icon active name="thumbs-up" />
-                                  <Text>12 Likes</Text>
-                              </Button>
-                              <Button transparent>
-                                  <Icon active name="chatbubbles" />
-                                  <Text>4 Comments</Text>
-                              </Button>
-                              <Text>11h ago</Text>
-                        </CardItem>
-                   </Card>
-                </Content>
-                <Footer>
-                    <Button bordered danger style={{alignSelf: 'center'}} onPress={this.handleStartClicked}>
-                        <Icon name="md-add-circle" />
-                        <Text>Start Brew</Text>
-                    </Button>
-                </Footer>
-            </Container>
-        );
-    }
+	render() {
+		return (
+			<Container>
+				<Content>
+					<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+					{this.getSizes().map(icon => (
+						<Button bordered light key={icon.size} style={{ height: 150, margin: 15, flexDirection: 'column' }} onPress={this.handleStartClicked}>
+							<Image key={icon.size} source={icon.image} style={{ width: 100, height: 100 }} />
+							<Text style={{textAlign: 'center'}} note>{icon.size}ml</Text>
+						</Button>
+					))}
+					</View>
+				</Content>
+			</Container>
+		);
+	}
 
-    handleStartClicked = () => {
-        console.log('Clicked!');
+	getSizes() {
+		return [
+			{
+				image: require('../../resources/icons/sizes/noun_158502_cc.png'),
+				size: 420
+			},
+			{
+				image: require('../../resources/icons/sizes/noun_532047_cc.png'),
+				size: 125
+			},
+			{
+				image: require('../../resources/icons/sizes/noun_532049_cc.png'),
+				size: 380
+			},
+			{
+				image: require('../../resources/icons/sizes/noun_158498_cc.png'),
+				size: 490
+			},
+			{
+				image: require('../../resources/icons/sizes/noun_532046_cc.png'),
+				size: 190
+			},
+			{
+				image: require('../../resources/icons/sizes/noun_532048_cc.png'),
+				size: 440
+			},
+			{
+				image: require('../../resources/icons/sizes/noun_532050_cc.png'),
+				size: 520
+			},
+		];
+	}
 
-        this.props.navigator.push({
-            screen: 'GuidedCoffee.Guide',
-            title: 'How much?'
-        });
-    }
+	handleStartClicked = () => {
+		this.props.navigator.push({
+			screen: 'GuidedCoffee.Guide'
+		});
+	}
 }
 
 const styles = StyleSheet.create({
-    background: {
-        width: '100%',
-        resizeMode: 'cover', // or 'stretch
-    }
+	background: {
+		width: '100%',
+		resizeMode: 'cover', // or 'stretch
+	}
 });
 
 function select(state, props) {
-    return {};
+	return {};
 }
 
 export default connect(select)(HistoryContainer);
